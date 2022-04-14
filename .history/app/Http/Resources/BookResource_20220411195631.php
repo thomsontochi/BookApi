@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class BookResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        //return parent::toArray($request);
+
+        return [
+            'id' => $this->id,
+            'type' => 'books',
+            'book' => [
+                'name'                  => $this->name,
+                'isbn'                  => $this->isbn,
+                'authors'               => $this->authors,
+                'authors' => [
+                    'self' => 'link-value',
+                ],
+                'country'               => $this->country,
+                'number_of_pages'       => $this->number_of_pages,
+                'publisher'             => $this->publisher,
+                'release_date'          => $this->release_date,
+                
+            ]
+            
+        ];
+
+
+        'name' => $data->name,
+        'isbn' => $data->isbn,
+        'authors' => is_array($data->authors) ? $data->authors : self::formatToArray($data->authors),
+        'number_of_pages' => $data->number_of_pages,
+        'publisher' => $data->publisher,
+        'country' => $data->country,
+        'release_date' => $data->release_date,
+
+
+
+
+
+
+
+    }
+}
